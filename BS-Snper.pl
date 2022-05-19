@@ -106,18 +106,12 @@ my $eee=2.7;
 #system("$Bin/chrLenExtract $fasta");
 #}
 
+
 if(system("$Bin/rrbsSnp $fasta $bam $output $methcg $methchg $methchh $minquali $mincover $maxcover $minhetfreq $errorate $mapvalue") != 0) {
         die "Error!";
 }
 
-
-#if(system("$Bin/rrbsSnp $interval $fasta $bam $output $methcg $methchg $methchh $minquali $mincover $maxcover $minhetfreq $errorate $mapvalue") != 0) {
-#die "Error!";
-#}
-#
-#
 my $year_month_day=strftime("%Y%m%d",localtime());
-
 
 print "##fileformat=VCFv4.3
 ##fileDate= $year_month_day
@@ -252,7 +246,6 @@ sub genotype
 
         if($lines[2] =~/G/i){##G>AA
             my $qvalue=$wsq[0];
-            my $depth=$watson[3]+$watson[0]+$crick[0]+$crick[3];
             # can only use watson in this case
             # my $depth=$watson[3]+$watson[0]+  $crick[0]+$crick[3];
             my $depth=$watson[3]+$watson[0];
